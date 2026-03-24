@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+@theme {
+  --color-gold: #D4AF37;
+  --color-gold-light: #E5C158;
+  --color-gold-dark: #B5952F;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Custom Navigation Link Underline Animation */
+.nav-link {
+  position: relative;
+  display: inline-block;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--color-gold);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-out;
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Form Input Focus/Hover */
+.form-input {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-input:hover, .form-input:focus {
+  border-color: var(--color-gold);
+  outline: none;
+  box-shadow: 0 0 0 1px var(--color-gold);
+}
+
+/* Button Hover Glow */
+.btn-primary {
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-gold-light);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+  transform: scale(1.05);
+}
+
+/* Service Card Hover */
+.service-card {
+  transition: all 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border-color: var(--color-gold);
+}
+
+/* Portfolio Item Hover */
+.portfolio-item {
+  overflow: hidden;
+  position: relative;
+}
+
+.portfolio-image {
+  transition: transform 0.5s ease;
+}
+
+.portfolio-item:hover .portfolio-image {
+  transform: scale(1.05);
+}
+
+.portfolio-overlay {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.portfolio-item:hover .portfolio-overlay {
+  opacity: 1;
+}
