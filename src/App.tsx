@@ -5,15 +5,27 @@ import { useState, useEffect } from 'react';
 export default function App() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [result, setResult] = useState("");  // ✅ ADD HERE
 
-  useEffect(() => {
+  const onSubmit = async (event) => {  // ✅ ADD HERE
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    formData.append("access_key", "142814be-61cf-41cb-8d15-7b139be70074");
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData
+    });
+    const data = await response.json();
+    setResult(data.success ? "Message sent! ✅" : "Something went wrong ❌");
+  };
+
+  useEffect(() => {  // ✅ useEffect stays BELOW
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
   const scrollToSection = (id: string) => {
     setIsMobileMenuOpen(false);
     const element = document.getElementById(id);
