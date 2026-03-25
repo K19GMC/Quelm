@@ -5,9 +5,9 @@ import { useState, useEffect } from 'react';
 export default function App() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [result, setResult] = useState("");  // ✅ ADD HERE
+  const [result, setResult] = useState("");
 
-  const onSubmit = async (event) => {  // ✅ ADD HERE
+  const onSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
     formData.append("access_key", "142814be-61cf-41cb-8d15-7b139be70074");
@@ -19,13 +19,14 @@ export default function App() {
     setResult(data.success ? "Message sent! ✅" : "Something went wrong ❌");
   };
 
-  useEffect(() => {  // ✅ useEffect stays BELOW
+  useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
   const scrollToSection = (id: string) => {
     setIsMobileMenuOpen(false);
     const element = document.getElementById(id);
@@ -329,11 +330,12 @@ export default function App() {
               transition={{ duration: 0.6 }}
               className="bg-white/5 p-8 md:p-10 rounded-3xl border border-white/10"
             >
-              <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+              <form className="space-y-6" onSubmit={onSubmit}>
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">Name</label>
                   <input 
-                    type="text" 
+                    type="text"
+                    name="name"
                     id="name" 
                     className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 form-input focus:bg-white/10"
                     placeholder="John Doe"
@@ -342,7 +344,8 @@ export default function App() {
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">Email</label>
                   <input 
-                    type="email" 
+                    type="email"
+                    name="email"
                     id="email" 
                     className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 form-input focus:bg-white/10"
                     placeholder="john@example.com"
@@ -351,6 +354,7 @@ export default function App() {
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">Message</label>
                   <textarea 
+                    name="message"
                     id="message" 
                     rows={4}
                     className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 form-input focus:bg-white/10 resize-none"
@@ -363,6 +367,7 @@ export default function App() {
                 >
                   Send Message
                 </button>
+                <p className="text-center text-sm text-gray-300">{result}</p>
               </form>
             </motion.div>
           </div>
