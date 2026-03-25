@@ -297,7 +297,7 @@ export default function App() {
                   </div>
                   <div>
                     <p className="text-sm text-gray-400">Email</p>
-                    <a href="mailto:nicandro.carranza@gmail.com" className="text-lg font-medium hover:text-gold transition-colors">nicandro.carranza@gmail.com</a>
+                    <a href="mailto:quelmco@gmail.com" className="text-lg font-medium hover:text-gold transition-colors">quelmco@gmail.com</a>
                   </div>
                 </div>
                 
